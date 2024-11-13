@@ -53,6 +53,7 @@ public:
 		cameraOut.translate(Vector3f((sw / 2) - centerPoint.x(), (sh / 2) - centerPoint.y(), 0));
 		
 		fadeOut = Math::lerp(0.0, 1.0, t*t);
+		LOG(DEBUG) << "LaunchAnimation::apply: t(" << t "):in, t*t(" << t*t << ") fadeOut: " << fadeOut << std::endl;
 	}
 
 private:
