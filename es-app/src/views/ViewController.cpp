@@ -581,7 +581,7 @@ void ViewController::launch(FileData* game, LaunchGameOptions options, Vector3f 
 	if (transition_style == "fade & slide")
 		transition_style = "slide";
 
-	LOG(DEBUG) << "ViewController::Launch: transition_style: " << transition_style << std::endl;
+	LOG(LogDebug) << "ViewController::Launch: transition_style: " << transition_style << std::endl;
 
 	// Workaround, the grid scale has problems when sliding giving bad effects
 	//if (transition_style == "slide" && mCurrentView->isKindOf<GridGameListView>())
@@ -613,8 +613,8 @@ void ViewController::launch(FileData* game, LaunchGameOptions options, Vector3f 
 	{
 		int slideDuration = (transition_style == "fast slide") ? 750 : 1500; // Halve the duration for fast slide
 										     //
-		LOG(DEBUG) << "ViewController::Launch: slideDuration: " << slideDuration << std::endl;
-		LOG(DEBUG) << "ViewController::Launch: mFadeOpacity: " << mFadeOpacity << std::endl;
+		LOG(LogDebug) << "ViewController::Launch: slideDuration: " << slideDuration << std::endl;
+		LOG(LogDebug) << "ViewController::Launch: mFadeOpacity: " << mFadeOpacity << std::endl;
 
 		// move camera to zoom in on center + fade out, launch game, come back in
 		setAnimation(new LaunchAnimation(mCamera, mFadeOpacity, center, slideDuration), 0, [this, origCamera, center, game, options]
@@ -628,8 +628,8 @@ void ViewController::launch(FileData* game, LaunchGameOptions options, Vector3f 
 			}
 			else
 			{
-				LOG(DEBUG) << "ViewController::Launch: (inner slide lamba) slideDuration: " << 600 << std::endl;
-				LOG(DEBUG) << "ViewController::Launch: (inner slide lamba) mFadeOpacity: " << mFadeOpacity << std::endl;
+				LOG(LogDebug) << "ViewController::Launch: (inner slide lamba) slideDuration: " << 600 << std::endl;
+				LOG(LogDebug) << "ViewController::Launch: (inner slide lamba) mFadeOpacity: " << mFadeOpacity << std::endl;
 				mCamera = origCamera;
 				setAnimation(new LaunchAnimation(mCamera, mFadeOpacity, center, 600), 0, [this] { GuiComponent::isLaunchTransitionRunning = false; mLockInput = false; mWindow->closeSplashScreen(); }, true, 3);
 				this->onFileChanged(game, FILE_METADATA_CHANGED);
@@ -638,7 +638,7 @@ void ViewController::launch(FileData* game, LaunchGameOptions options, Vector3f 
 	} 
 	else // instant
 	{ 		
-		LOG(DEBUG) << "ViewController::Launch: Setting Launch Animation Fade Opacity to: " << mFadeOpacity << std::endl;
+		LOG(LogDebug) << "ViewController::Launch: Setting Launch Animation Fade Opacity to: " << mFadeOpacity << std::endl;
 
 		setAnimation(new LaunchAnimation(mCamera, mFadeOpacity, center, 10), 0, [this, origCamera, center, game, options]
 		{			

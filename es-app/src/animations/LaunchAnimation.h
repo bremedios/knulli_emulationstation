@@ -2,6 +2,7 @@
 #ifndef ES_APP_ANIMATIONS_LAUNCH_ANIMATION_H
 #define ES_APP_ANIMATIONS_LAUNCH_ANIMATION_H
 
+#include "Log.h"
 #include "animations/Animation.h"
 
 // let's look at the game launch effect:
@@ -53,7 +54,7 @@ public:
 		cameraOut.translate(Vector3f((sw / 2) - centerPoint.x(), (sh / 2) - centerPoint.y(), 0));
 		
 		fadeOut = Math::lerp(0.0, 1.0, t*t);
-		LOG(DEBUG) << "LaunchAnimation::apply: t(" << t "):in, t*t(" << t*t << ") fadeOut: " << fadeOut << std::endl;
+		LOG(LogDebug) << "LaunchAnimation::apply: t(" << t << "):in, t*t(" << t*t << ") fadeOut: " << fadeOut << std::endl;
 	}
 
 private:
