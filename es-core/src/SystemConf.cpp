@@ -4,6 +4,7 @@
 #include "Log.h"
 #include "utils/StringUtil.h"
 #include "utils/FileSystemUtil.h"
+#include "Scripting.h"
 #include "Settings.h"
 #include "Paths.h"
 
@@ -34,7 +35,7 @@ static std::map<std::string, std::string> defaults =
 	{ "kodi.atstartup", "0" },
 	{ "audio.bgmusic", "1" },
 	{ "wifi.enabled", "0" },
-	{ "system.hostname", "BATOCERA" }, // batocera
+	{ "system.hostname", "KNULLI" }, // knulli
 	{ "global.retroachievements", "0" },
 	{ "global.retroachievements.hardcore", "0" },
 	{ "global.retroachievements.leaderboards", "0" },
@@ -129,7 +130,7 @@ bool SystemConf::saveSystemConf()
 		filein.close();
 	}
 
-	static std::string removeID = "$^é(p$^mpv$êrpver$^vper$vper$^vper$vper$vper$^vperv^pervncvizn";
+	static std::string removeID = "$^ï¿½(p$^mpv$ï¿½rpver$^vper$vper$^vper$vper$vper$^vperv^pervncvizn";
 
 	int lastTime = SDL_GetTicks();
 
@@ -204,6 +205,8 @@ bool SystemConf::saveSystemConf()
 
 	remove(mSystemConfFileTmp.c_str());
 	changedConf.clear();
+
+	Scripting::fireEvent("config-changed");
 
 	return true;
 }
